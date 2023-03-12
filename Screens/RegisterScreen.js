@@ -13,6 +13,7 @@ const RegisterScreen = ({navigation}) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerBackTitle: "Login",
+            color:
         });
     },[navigation]);
 
@@ -33,8 +34,8 @@ const RegisterScreen = ({navigation}) => {
           <View style={styles.inputContainer}>
                 <Input placeholder='Full Name' autoFocus type='text' value={name} onChangeText={(text)=>setName(text)}/>
                 <Input placeholder="Email" type='email' value={email} onChangeText={(text) => setEmail(text)}/>
-                <Input placeholder="Password" type="password" value={password} secureTextEntry onChangeText={(text)=>setPassword(text)} onSubmitEditing={register}/>
                 <Input placeholder="Phone No:" type="number" value={Phone }onChangeText={(text)=>setPhone(text)}/>
+                <Input placeholder="Password" type="password" value={password} secureTextEntry onChangeText={(text)=>setPassword(text)} onSubmitEditing={register}/>
             </View> 
            <TouchableOpacity style={tw `p-2 bg-black mt-4 w-40 mb-3`} onPress={register}> 
                 <Text style={styles.text}>Register</Text>

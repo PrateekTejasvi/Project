@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     header:{
-        backgroundColor:"#000000",
+        backgroundColor:"#543199",
     }
 });
+//#543199

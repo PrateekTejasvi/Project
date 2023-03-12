@@ -6,7 +6,6 @@ import { Input, Image } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 
 
-
 const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,14 +17,14 @@ const Login = ({navigation}) => {
             <StatusBar style='light'/>
             <TouchableOpacity style={styles.image} onPress={() => {Linking.openURL('https://google.com')}}>
             <Image
-                source={require('../assets/Logo.png')}
+                source={require('../assets/Logotest1.png')}
                 style={{ width: 200, height: 200,alignItems:'center',justifyContent:'flex-start',flexDirection:'row'}} />
            </TouchableOpacity>
             <View style={styles.inputContainer}>
                 <Input placeholder='Email' autoFocus autoCapitalize="none" type='Email' value={email} onChangeText={(text) => setEmail(text)} />
                 <Input placeholder='Password' autoCapitalize="none" type='Password' secureTextEntry value={password} onChangeText={(text) => setPassword(text)} />
             </View>
-            <TouchableOpacity style={tw `p-2 bg-black mt-4 w-40 mb-3`} onPress={signIn}> 
+            <TouchableOpacity style={styles.loginbutton} onPress={signIn}> 
                 <Text style={styles.text}>Login</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{padding:2,wdith:30,marginTop:4}} onPress={() => navigation.navigate('Register')}> 
@@ -76,6 +75,13 @@ const styles = StyleSheet.create({
     image :{
         width:200,
         height:200
+    },
+    loginbutton:{ 
+        padding:2,
+        backgroundColor:'#543199', 
+        marginTop:4,
+        marginBottom:3,
+        width:150,
     }
 });
 
