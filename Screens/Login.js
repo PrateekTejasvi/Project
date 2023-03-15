@@ -32,6 +32,7 @@ const Login = ({navigation}) => {
             </TouchableOpacity>
             <View style={{ height: 175}} />
         </KeyboardAvoidingView>
+   
     )
 
 }
@@ -51,7 +52,9 @@ const styles = StyleSheet.create({
     button: {
         width: 200,
         marginTop: 10,
-        color:'black'
+        color:'black',
+        alignItems:'center',
+        justifyContent:'center'
      
     },
     text :{
@@ -71,10 +74,6 @@ const styles = StyleSheet.create({
         alignItems:'center',
         textAlign:'center',
         fontSize:17
-    },
-    image :{
-        width:200,
-        height:200
     },
     loginbutton:{ 
         padding:2,

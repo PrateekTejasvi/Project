@@ -10,13 +10,6 @@ import tw from 'tailwind-react-native-classnames'
 
 const RegisterScreen = ({navigation}) => {
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerBackTitle: "Login",
-            color:
-        });
-    },[navigation]);
-
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
