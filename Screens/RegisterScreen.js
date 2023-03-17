@@ -5,10 +5,15 @@ import {Input,Button,Text} from 'react-native-elements'
 import {useState,useLayoutEffect} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import tw from 'tailwind-react-native-classnames'
-//import { auth } from '../firebase';
+import { auth } from '../firebase';
 
 
 const RegisterScreen = ({navigation}) => {
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerBackTitle:"Login",
+        });
+    },[navigation]);
 
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
@@ -16,7 +21,12 @@ const RegisterScreen = ({navigation}) => {
     const [Phone,setPhone] = useState("");
 
     const register = () => {
-    
+        auth.createUserWithEmailAndPassword(email,password)
+        .then(authUser => {
+            authUser.user.update({
+                displayName:name
+            });
+        }).catch(error => alert(error.message));
     }
   return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>

@@ -33,7 +33,7 @@ export default function App() {
                             component={Login}
                             options={{
 
-                                headerTintColor: 'black',
+                                headerTintColor: 'white',
                                 headerStyle:styles.header, 
                                 headerTitleStyle:{color:"white"},
                                 headerTitle:"Sign in",
@@ -43,7 +43,7 @@ export default function App() {
                             name="Register"
                             component={RegisterScreen}
                             options={{
-                                headerTintColor: 'black',
+                                headerTintColor: '#333333',
                                 headerStyle:styles.header, 
                                 headerTitleStyle:{color:"white"},
                                 headerTitle:"Register",
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     header:{
-        backgroundColor:"#543199",
+        backgroundColor:"#4db2ec",
     }
 });
 //#543199

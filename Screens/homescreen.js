@@ -18,7 +18,7 @@ const HomeScreen = () => {
                 source ={
                     
                    // uri:"https://links.papareact.com/gzs" //Top logo
-                   require('../assets/Logo.png')
+                   require('../assets/bu.png')
                 }
              />
         <NavOptions/>

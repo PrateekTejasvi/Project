@@ -1,14 +1,22 @@
 import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView, Linking } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { Input, Image } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import { auth } from '../firebase';
 
 
 const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    useEffect(() => {
+        auth.onAuthStateChanged((authUser)=>{
+             if(authUser){
+                 navigation.replace("Home");
+             }
+        })
+    },[])
     const signIn = () => {
 
     }
@@ -17,7 +25,7 @@ const Login = ({navigation}) => {
             <StatusBar style='light'/>
             <TouchableOpacity style={styles.image} onPress={() => {Linking.openURL('https://google.com')}}>
             <Image
-                source={require('../assets/Logotest1.png')}
+                source={require('../assets/bu.png')}
                 style={{ width: 200, height: 200,alignItems:'center',justifyContent:'flex-start',flexDirection:'row'}} />
            </TouchableOpacity>
             <View style={styles.inputContainer}>
@@ -27,7 +35,7 @@ const Login = ({navigation}) => {
             <TouchableOpacity style={styles.loginbutton} onPress={signIn}> 
                 <Text style={styles.text}>Login</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{padding:2,wdith:30,marginTop:4}} onPress={() => navigation.navigate('Register')}> 
+            <TouchableOpacity style={{padding:2,wdith:30,marginTop:4}} type="outline" onPress={() => navigation.navigate('Register')}> 
             <Text style={styles.textRegister}>Register</Text>
             </TouchableOpacity>
             <View style={{ height: 175}} />
@@ -77,13 +85,15 @@ const styles = StyleSheet.create({
     },
     loginbutton:{ 
         padding:2,
-        backgroundColor:'#543199', 
+        backgroundColor:'#4db2ec', 
         marginTop:4,
         marginBottom:3,
         width:150,
+        borderRadius:100
     }
 });
 
 export default Login;
 
 
+//prateek_t6 
