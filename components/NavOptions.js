@@ -3,7 +3,9 @@ import React from 'react'
 import tw from 'tailwind-react-native-classnames'
 import { Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native'
-import Profile from '../Screens/Profile'
+//mport Profile from '../Screens/Profile'
+import {auth} from '../firebase'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const data = [
   {
@@ -25,6 +27,7 @@ const data = [
 
 const NavOptions =() => {
   const navigation = useNavigation();
+  
   return (
     <FlatList 
     data={data} horizontal 
@@ -41,7 +44,6 @@ const NavOptions =() => {
                   } 
                 }
               /> 
-           <Profile/>
             <Text style={tw `mt-2 text-lg font-semibold`}>{item.title}</Text>
             <Icon style= {tw `p-2 bg-black rounded-full w-10 mt-4`} name="arrowright" color="white" type = "antdesign"/>
             </View>

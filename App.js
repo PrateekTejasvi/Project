@@ -12,14 +12,6 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { initializeApp } from "firebase/app";
 
-// TODO: Add SDKs for Firebase products that you want to use
-
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-
-//const app = initializeApp(firebaseConfig);
-
-
 export default function App() {
     const Stack = createStackNavigator();
     return (
@@ -37,6 +29,7 @@ export default function App() {
                                 headerStyle:styles.header, 
                                 headerTitleStyle:{color:"white"},
                                 headerTitle:"Sign in",
+                                headerShown:false
                             }}
                         />
                         <Stack.Screen
@@ -47,6 +40,7 @@ export default function App() {
                                 headerStyle:styles.header, 
                                 headerTitleStyle:{color:"white"},
                                 headerTitle:"Register",
+                                headerShown:false
                             }}/>
                         <Stack.Screen
                             name="HomeScreen"

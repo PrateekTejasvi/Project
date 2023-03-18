@@ -12,6 +12,7 @@ const Profile = () => {
         <TouchableOpacity onPress={() => navigation.navigate('MapScreen')}> 
             <Icon style = {{position:'absolute', alignSelf:'flex-end',marginTop:-5}} name="CarOutlined" color="black" type="antdesign"/>
             </TouchableOpacity>
+            
     </SafeAreaView>
   )
 }
