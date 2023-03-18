@@ -21,12 +21,14 @@ const RegisterScreen = ({navigation}) => {
     const [Phone,setPhone] = useState("");
 
     const register = () => {
-        auth.createUserWithEmailAndPassword(email,password)
-        .then(authUser => {
+        auth
+        .createUserWithEmailAndPassword(email,password)
+        .then((authUser) => {
             authUser.user.update({
-                displayName:name
-            });
-        }).catch(error => alert(error.message));
+                displayName:name,
+            })
+        })
+        .catch((error) => alert(error.message)); 
     }
   return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>

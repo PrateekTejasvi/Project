@@ -3,23 +3,36 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { Input, Image } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
+//import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebase';
+import { useNavigation } from '@react-navigation/native';
 
 
-const Login = ({navigation}) => {
+
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigation = useNavigation();
+
     useEffect(() => {
-        auth.onAuthStateChanged((authUser)=>{
-             if(authUser){
-                 navigation.replace("Home");
-             }
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if(user) { 
+                navigation.replace("HomeScreen");
+            }
         })
+        return unsubscribe;
     },[])
+
     const signIn = () => {
+        auth.signInWithEmailAndPassword(email,password).then(userCredentials => {
+            const user = userCredentials.user;
+            console.log('Logged with with email and password')
+
+        }).catch(error => alert(error.message));
 
     }
+
     return (
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <StatusBar style='light'/>
