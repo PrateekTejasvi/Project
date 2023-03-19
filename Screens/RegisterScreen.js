@@ -1,9 +1,8 @@
-import { KeyboardAvoidingView, StyleSheet, View ,TouchableOpacity, Linking} from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, View ,TouchableOpacity, Linking,ImageBackground,Dimensions} from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {Input,Button,Text} from 'react-native-elements'
 import {useState,useLayoutEffect} from 'react';
-import { StatusBar } from 'expo-status-bar';
 import tw from 'tailwind-react-native-classnames'
 import { auth } from '../firebase';
 
@@ -29,13 +28,20 @@ const RegisterScreen = ({navigation}) => {
             })
         })
         .catch((error) => alert(error.message)); 
+        if(register){
+            navigation.navigate('Login')
+        }
     }
   return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
-          <StatusBar style='light'/>
-          <Text h3 style={{marginBottom: 50,fontWeight:"bold",marginTop:50}}> 
-            Create An Account
-          </Text>
+            <Text h3 style={{marginBottom: 50,fontWeight:"bold",color:'white'}}> 
+                         Create An Account
+                 </Text>   
+            <ImageBackground source={require('../assets/properbg.jpg')}
+                resizeMode="center"
+                style={styles.image_background}
+                imageStyle={{ resizeMode: "cover", alignSelf: "flex-end" }} />
+                   
           <View style={styles.inputContainer}>
                 <Input placeholder='Full Name' autoFocus type='text' value={name} onChangeText={(text)=>setName(text)}/>
                 <Input placeholder="Email" type='email' value={email} onChangeText={(text) => setEmail(text)}/>
@@ -57,11 +63,18 @@ const RegisterScreen = ({navigation}) => {
 export default RegisterScreen
 
 const styles = StyleSheet.create({
+    image_background: {
+        flex: 1,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        position: "relative",
+        bottom: 100
+    },
     container: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'left',
         justifyContent: 'center',
-        padding:10,
+        
         backgroundColor: 'white',
      
     },

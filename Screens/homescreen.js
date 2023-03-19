@@ -4,7 +4,7 @@ import tw from 'tailwind-react-native-classnames';
 import NavOptions from '../components/NavOptions'
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebase';
-import Camera from './Camer';
+//import Camera from './Camer';
 
 //home screen
 const HomeScreen = () => {
@@ -19,7 +19,6 @@ const HomeScreen = () => {
   return (
       
     <SafeAreaView style={tw `bg-white h-full`}>
-        <Camera/>
         <View style={tw`p-5`}> 
             <Image 
                 style = {{
@@ -32,6 +31,11 @@ const HomeScreen = () => {
                    require('../assets/bu.png')
                 }
              />
+              <TouchableOpacity style={{flex:1,position:'absolute'}} onPress={signOut}>
+                 <Text h3 style={{marginBottom: 50,fontWeight:"bold",color:'black'}}> 
+                        Sign Out
+                 </Text>   
+                 </TouchableOpacity>
         <NavOptions/>
         </View>
     </SafeAreaView>
@@ -47,4 +51,3 @@ const styles = StyleSheet.create({
         backgroundColor:'black'
     }
 });
-

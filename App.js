@@ -10,7 +10,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { initializeApp } from "firebase/app";
+
 
 export default function App() {
     const Stack = createStackNavigator();
@@ -74,4 +74,3 @@ const styles = StyleSheet.create({
         backgroundColor:"#4db2ec",
     }
 });
-//#543199

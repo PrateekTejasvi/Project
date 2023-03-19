@@ -19,7 +19,7 @@ const Login = () => {
             if (user) {
                 navigation.replace("HomeScreen");
             }
-            
+
         })
         return unsubscribe;
     }, [])
@@ -33,28 +33,27 @@ const Login = () => {
     return (
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <ImageBackground source={require('../assets/properbg.jpg')}
-                resizeMode="center"
+                resizeMode="cover"
                 style={styles.image_background}
-                imageStyle={{ resizeMode: "cover", alignSelf: "flex-end" }} />
+                imageStyle={{ resizeMode: "cover" }} />
 
-            <View style={{ flex: 1 }}>
+
+            <View style={{ flex: 1 ,position:'absolute',top:Dimensions.get('screen').height/10}}>
                 <View style={{ flex: 1, paddingTop: 70 }}>
-                    <Text style={{ fontSize: 45, color: 'white', fontWeight: 'bold', textAlign: 'center', paddingTop: 30 }}>{new Date().getHours() < 12 ? "Good Morning!" : "GoodEvening!"} </Text>
-                    <Text style={{ fontSize: 45, color: 'white', fontWeight: 'bold', textAlign: 'center', paddingTop: 50 }}>Login</Text>
+                    <Text style={{ fontSize: 45, color: 'white', fontWeight: 'bold', textAlign: 'center', paddingTop: 30 }}>{new Date().getHours() < 12 ? "Good Morning!" : "Good Evening!"} </Text>
+                    <Text style={{ fontSize: 45, color: 'white', fontWeight: 'bold', textAlign: 'center', paddingTop: 50 }}>Login..</Text>
                 </View>
             </View>
 
-            <View style={{ paddingTop: 250, bottom: 350, position: 'absolute', width: 500 }}>
+            <View style={{ paddingTop: 300, width: 500,position:'absolute'}}>
                 <View style={styles.creds}>
-                    <MaterialIcons name='alternate-email' size={20} color="#666" style={{ marginRight: 1 }} />
+                    <MaterialIcons name='mail' size={20} color="#666" style={{ marginRight: 1, paddingBottom: 15}} />
                     <Input placeholder='Email' autoFocus autoCapitalize="none" type='Email' value={email} onChangeText={(text) => setEmail(text)} />
                 </View>
-
                 <View style={styles.creds}>
-                    <Ionicons name="ios-lock-closed-outline" size={20} color="#666" style={{ marginRight: 1 }} />
+                    <Ionicons name="ios-lock-closed-outline" size={20} color="#666" style={{ marginRight: 1, paddingBottom: 15 }} />
                     <Input placeholder='Password' autoCapitalize="none" type='Password' secureTextEntry value={password} onChangeText={(text) => setPassword(text)} />
                 </View>
-
             </View>
 
 
@@ -73,18 +72,20 @@ const Login = () => {
                     <Icon style={tw`p-2 bg-white rounded-full w-20`} name="facebook-square" color="black" type="antdesign" />
                 </TouchableOpacity>
             </View>
+
             <TouchableOpacity style={styles.loginbutton} onPress={signIn}>
                 <Text style={styles.text}>Login</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 2, width: 300, marginTop: 30, bottom: 80, position: 'absolute' }} type="outline" onPress={() => navigation.navigate('Register')}>
+            </TouchableOpacity >
+
+            <TouchableOpacity style={{ padding: 2, width: Dimensions.get('window').width / 2, marginTop: 30, bottom: Dimensions.get('screen').height / 12, position: 'absolute' }} type="outline" onPress={() => navigation.navigate('Register')}>
                 <Text style={styles.textRegister}>Register</Text>
             </TouchableOpacity>
 
 
-            <View style={{ bottom: 200, position: 'absolute', bottom: 210 }}>
+            <View style={{ bottom: Dimensions.get('window').height / 5.5, position: 'absolute' }}>
                 <Text style={{ color: '#223BC9', fontSize: 17, fontWeight: '700' }}>Or Sign Up With</Text>
             </View>
-            <View style={{ height: 150 }} />
+            <View style={{ height: 100 }} />
         </KeyboardAvoidingView>
 
 
@@ -95,10 +96,10 @@ const Login = () => {
 const styles = StyleSheet.create({
     image_background: {
         flex: 1,
-        width: Dimensions.get('screen').width,
-        height: Dimensions.get('screen').height,
-        position: "absolute",
-        bottom: 0
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        position: "relative",
+        bottom: 100
     },
     creds: {
         flex: 1,
@@ -106,6 +107,8 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         paddingBottom: 1,
         marginBottom: 20,
+        borderColor:'black',
+        alignItems:'center',
     },
     container: {
         flex: 1,
@@ -137,12 +140,12 @@ const styles = StyleSheet.create({
     loginbutton: {
         padding: 2,
         backgroundColor: '#223BC9',
-        width: 350,
-        marginBottom: 300,
+        width: Dimensions.get('window').width / 2,
+       // marginBottom: 300,
         marginTop: 50,
         alignItems: 'center',
         position: 'absolute',
-        bottom: 0,
+        top:Dimensions.get('screen').height/1.5,
 
     },
 
