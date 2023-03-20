@@ -29,7 +29,7 @@ const RegisterScreen = ({navigation}) => {
         })
         .catch((error) => alert(error.message)); 
         if(register){
-            navigation.navigate('Login')
+            navigation.navigate('Login');
         }
     }
   return (

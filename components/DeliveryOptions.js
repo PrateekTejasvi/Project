@@ -4,7 +4,7 @@ import React from 'react'
 const DeliveryOptions = () => {
   return (
     <View>
-      <Text>Pick a ride</Text>
+      <Text>Delivery options</Text>
     </View>
   )
 }
