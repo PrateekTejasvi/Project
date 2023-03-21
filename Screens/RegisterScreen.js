@@ -1,5 +1,5 @@
 import { KeyboardAvoidingView, StyleSheet, View ,TouchableOpacity, Linking,ImageBackground,Dimensions} from 'react-native'
-import React from 'react'
+import React,{useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {Input,Button,Text} from 'react-native-elements'
 import {useState,useLayoutEffect} from 'react';
@@ -20,6 +20,8 @@ const RegisterScreen = ({navigation}) => {
     const [Phone,setPhone] = useState("");
 
     const register = () => {
+        
+
         auth
         .createUserWithEmailAndPassword(email,password)
         .then((authUser) => {
@@ -28,9 +30,8 @@ const RegisterScreen = ({navigation}) => {
             })
         })
         .catch((error) => alert(error.message)); 
-        if(register){
-            navigation.navigate('Login');
-        }
+
+        
     }
   return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>

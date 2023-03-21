@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView, ImageBackground, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView, ImageBackground, Dimensions, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Input, Icon } from 'react-native-elements';
 import { auth } from '../firebase';
@@ -6,9 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import tw from 'tailwind-react-native-classnames';
+import { TextInput } from 'react-native-gesture-handler';
 
-const width = Dimensions.get('screen').width
-const height = Dimensions.get('screen').height
+const screen = Dimensions.get('screen')
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -32,62 +33,54 @@ const Login = () => {
     }
 
     return (
-        <KeyboardAvoidingView behavior='padding' style={styles.container}>
-            <ImageBackground source={require('../assets/properbg.jpg')}
-                resizeMode="cover"
-                style={styles.image_background}
-                imageStyle={{ resizeMode: "cover" }} />
+        <KeyboardAvoidingView behavior='padding' style={styles.background}>
+            <ImageBackground source={require('../assets/properbg.jpg')} style={styles.image_container} />
+
+            <View style={{ flex: 1, position: 'relative', bottom: screen.width / 3 }}>
+                <Text style={styles.greeting}>
+                    {new Date().getHours() < 12 ? "Good Morning\n" : "Good Evening\n"}
+                </Text>
+
+                <Text style={styles.text_header}>Login</Text>
 
 
-            <View style={{ flex:1 ,position:'absolute',top:0}}>
-                <View style={{ flex: 1, paddingTop: 70 }}>
-                    <Text style={{ fontSize: 45, color: 'white', fontWeight: 'bold', textAlign: 'center', paddingTop: 30 }}>{new Date().getHours() < 12 ? "Good Morning!" : "Good Evening!"} </Text>
-                    <Text style={{ fontSize: 45, color: 'white', fontWeight: 'bold', textAlign: 'center', paddingTop: 50 }}>Login..</Text>
-                </View>
+            </View>
+            <View style={{ flexDirection: 'row', width: screen.width / 1.4, bottom: 50, alignItems: 'center', justifyContent: 'center' }}>
+                <MaterialIcons name="mail" size={20} color="black" style={{ marginRight: 5, marginBottom: 15 }} />
+                <Input placeholder='Email' placeholderTextColor={"black"} autoFocus autoCapitalize='none' type="email" value={email} onChangeText={(text) => setEmail(text)} />
+            </View>
+            <View style={{ flexDirection: 'row', width: screen.width / 1.4, bottom: 45, alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name="ios-lock-closed" size={20} color="black" style={{ marginRight: 5, marginBottom: 15 }} />
+                <Input placeholder='Password' placeholderTextColor={"black"} autoCapitalize='none' type="Pasword" secureTextEntry value={password} onChangeText={(text) => setPassword(text)} />
             </View>
 
-            <View style={{ paddingTop:200, width:275,position:'absolute'}}>
-                <View style={styles.creds}>
-                    <MaterialIcons name='mail' size={20} color="#666" style={{ marginRight: 1, paddingBottom: 15}} />
-                    <Input placeholder='Email' hitSlope autoFocus autoCapitalize="none" type='Email' value={email} onChangeText={(text) => setEmail(text)} />
-                </View>
-                <View style={styles.creds}>
-                    <Ionicons name="ios-lock-closed-outline" size={20} color="#666" style={{ marginRight: 1, paddingBottom: 15 }} />
-                    <Input placeholder='Password' autoCapitalize="none" type='Password' secureTextEntry value={password} onChangeText={(text) => setPassword(text)} />
-                    <Text style={styles.text}>Forgot password?</Text>{/*TO:Do run this on device*/}
-                </View>
-            </View>
+            <TouchableOpacity style={styles.login} onPress={signIn}>
+                <Text style={styles.text}>Login</Text>
+            </TouchableOpacity>
 
 
-            <View style={{ flex: 1, flexDirection: 'row', position: 'absolute',bottom:80 }}>
-                <TouchableOpacity style={{ flexDirection: 'row' }}>
+
+            <View style={{ flexDirection: 'row', position: 'absolute', bottom: 60 }}>
+                <TouchableOpacity style={{ flexDirection: 'row' }} onPress={()=> alert("Hahah doesn't work")}>
                     <Icon style={tw`p-2 bg-white rounded-full w-20  mr-5`} name="apple1" color="black" type="antdesign" />
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ flexDirection: 'row' }}>
+                <TouchableOpacity style={{ flexDirection: 'row' }} onPress={()=>alert("Doesnt work either")}>
 
                     <Icon style={tw`p-2 bg-white rounded-full w-20 mr-5`} name="google" color="black" type="antdesign" />
 
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ flexDirection: 'row' }}>
+                <TouchableOpacity style={{ flexDirection: 'row' }} onPress={()=>alert("you think this one would work")}>
                     <Icon style={tw`p-2 bg-white rounded-full w-20`} name="facebook-square" color="black" type="antdesign" />
                 </TouchableOpacity>
             </View>
-
-            <TouchableOpacity style={styles.loginbutton} onPress={signIn}>
-                <Text style={styles.text}>Login</Text>
-            </TouchableOpacity >
-
-            <TouchableOpacity style={{ padding: 2, width: width / 2, marginTop: 30, top:width, position: 'relative' }} type="outline" onPress={() => navigation.navigate('Register')}>
+            <TouchableOpacity style={{ padding: 2,width:screen.width,height:screen.height,position:'absolute',top:screen.height/1.1,paddingTop:10,}} type="outline" onPress={() => navigation.navigate('Register')}>
                 <Text style={styles.textRegister}>Register</Text>
             </TouchableOpacity>
 
-
-            <View style={{ bottom: width/3, position: 'absolute' ,paddingTop:10}}>
-                <Text style={{ color: '#223BC9', fontSize: 17, fontWeight: '700' }}>Or Sign Up With</Text>
-            </View>
             <View style={{ height: 100 }} />
+
         </KeyboardAvoidingView>
 
 
@@ -96,59 +89,58 @@ const Login = () => {
 }
 
 const styles = StyleSheet.create({
-    image_background: {
+    image_container: {
+        height: screen.height,
+        width: screen.width,
         flex: 1,
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
-        position: "relative",
-        bottom: 100
+        position: 'relative',
+        resizeMode: 'strech'
     },
-    creds: {
+    background: {
         flex: 1,
-        flexDirection: 'row',
-        borderBottomColor: '#ccc',
-        paddingBottom: 1,
-        marginBottom: 20,
-        borderColor:'black',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    container: {
-        flex: 1,
+    greeting: {
+        fontSize: 40,
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'left',
+    },
+    text_header: {
+        fontSize: 40,
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        top: 0,
+
+    },
+    inputContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 0.5,
-        backgroundColor: 'white',
-        padding: 100,
+        width: screen.width / 1.5,
+        bottom: 150,
+    },
+    login: {
+        width: screen.width / 2,
+        backgroundColor: 'black',
+        alignItems: 'center',
+        bottom: screen.height / 20,
+        padding: 2
     },
     text: {
         paddingTop: 10,
         paddingBottom: 10,
         color: 'white',
         fontWeight: 'bold',
-        justifyContent: 'center',
-        alignItems: 'center',
         textAlign: 'center',
         fontSize: 20,
-    },
-    text_forgot: {
-        color: 'black'
     },
     textRegister: {
         fontSize: 17,
         alignItems: 'center',
         textAlign: 'center',
         fontWeight: 'bold'
-    },
-    loginbutton: {
-        padding: 2,
-        backgroundColor: '#223BC9',
-        width: Dimensions.get('window').width / 2.5,
-       // marginBottom: 300,
-        marginTop: 50,
-        alignItems: 'center',
-        position: 'absolute',
-        bottom:height/5
-
     },
 
 })
